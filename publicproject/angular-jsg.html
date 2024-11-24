@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Step 1 :copying angularJS cdn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+     <script>
+        var module=angular.module("Module1",[]);
+        var controller=module.controller("Controller1",function($scope){
+            //$scope.fn="Aonepreet";
+            $scope.doHello=function(){
+                //alert($scope.fn1+".. Welcome To My First Angular JS code ");
+                alert("hello dear "+$scope.fn);
+                //alert($scope.full);
+            }
+            $scope.doJoin=function()
+            {
+                $scope.full=$scope.fn+" "+$scope.ln;
+            }
+            
+        });
+     </script>
+</head>
+<!--Body is view n step 2 is to link body with module nad controller -->
+<body ng-app="Module1" ng-controller="Controller1">
+    
+    <center>
+         <p>First Name<input type="text" ng-model="fn"/></p>
+         <p>Last Name<input type="text" ng-model="ln"/></p>
+         <p>
+         <input type="button" value="join" ng-click="doJoin();"/>
+         <input type="button" value="Hello" ng-click="doHello();"/>
+         </p>
+         <p>
+            Full Name=<input type="text" ng-model="full">
+          </p>
+          <p>{{fn}}</p>
+          <p>
+            {{full}}
+          </p>
+    
+    </center>
+    
+</body>
+</html>

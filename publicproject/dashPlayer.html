@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashPlayer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .outerbox{
+            background-color: rgb(161, 161, 237);height: 300px;padding: 30px 30px 30px 30px;}
+            
+        #piclogin{
+            align-content: center;width: 70px;height: 70px;margin-left: 180px;
+            
+        }
+        #activeuser{
+          font-size: 20px; color: black;margin-bottom: 5px;
+        }
+        #body1{
+          background-color: rgb(214, 214, 233);
+        }
+    
+        
+    </style>
+    <!--JQUERY LINKING-->
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+    </script>
+    <script>
+      $(document).ready(function(){
+        
+
+        $("#lbtn").click(function(){
+          let emailid=$("#txtemail").val();
+            let pwd=$("#txtpwd").val();
+            let newpwd=$("#txtnewpwd").val();
+            let obj={
+                type:"get",
+                url:"/updtdone",
+                data:{
+                    txtemail:emailid,
+                    txtpwd:pwd,
+                    txtnewpwd:newpwd
+                    
+                }
+            }
+            //fire AJAX request
+            $.ajax(obj).done(function(response){
+                alert(response);
+                //resp=response;
+              
+            }).fail(function(err){
+                
+                alert("Server Error");
+            })
+
+        })
+
+        /**********on pg load welcome emailid**************/
+        alert(localStorage.getItem("activeuser"));
+        $("#activeuser").html(localStorage.getItem("activeuser"));
+
+        if(localStorage.getItem("activeuser")==null)
+        {
+          location.href="index.html";
+          return;
+        }
+
+        /**********logout card btn******************/
+        $("#btnlogout").click(function(){
+          localStorage.removeItem("activeuser");
+          location.href="index.html";
+        })
+    })
+      
+    </script>
+</head>
+<body id="body1">
+     <!-- UPDT PSWD MODAL CODE-->
+
+<div class="modal fade" id="updtModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">UPDATE CREDENTIALS</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+              <table>
+                  <center>
+                        <tr>
+                            <td><center>
+                                  <img id="piclogin" src="./images/password.png" ></center>
+                            </td>
+                        </tr>
+                  </center> 
+              </table>       
+        </form>
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="txtemail" name="txtemail" aria-describedby="emailHelp">
+            
+            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="txtpwd" name="txtpwd" >
+            
+           
+           
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Updated Password</label>
+            <input type="password" class="form-control" id="txtnewpwd" name="txtnewpwd" >
+            
+           
+            
+          </div>
+          
+         
+          
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" name="lbtn" id="lbtn" formaction="/updtdone">Update</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+   
+      
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div style="line-height: 60px;background-color: white;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;text-align: center;font-size: 30px; margin-top: 15px;">PLAYER'S INFORMATION DESK</div>
+    <div class="row mt-2"><center>
+      Welcome : <span id="activeuser">  </span>
+   </center></div>
+<div class="col-md-3 mt-2 " style="float: left;">
+  <div class="card h-100" >
+    <img src="./images/bussiness-man.png" class="card-img-top" alt="..." />
+    <div class="card-body text-center">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        <a href="profilePlayer.html" class="btn btn-outline-primary">Player-Profile</a></p>
+    </div>
+  </div>
+</div>
+<div class="col-md-3 mt-2"  style="float: left;">
+  <div class="card h-100" >
+    <img src="./images/stadium.png" class="card-img-top" alt="..." />
+    <div class="card-body text-center">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        
+      <a href="angular.html" class="btn btn-outline-secondary">Search Tournaments</a></p>
+    </div>
+  </div>
+</div>
+<div class="col-md-3 mt-2"  style="float: left;">
+  <div class="card h-100" >
+    <img src="./images/cogwheel.png" class="card-img-top" alt="..." />
+    <div class="card-body text-center">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+       
+      <a href="#" class="btn btn-outline-warning " data-bs-toggle="modal" data-bs-target="#updtModal">Settings</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-3 mt-2"  style="float: left;">
+    <div class="card h-100" >
+      <img src="./images/user-logout (1).png" class="card-img-top" alt="..." />
+      <div class="card-body text-center">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+         
+        <a href="#" class="btn btn-outline-danger " id="btnlogout">Log Out</a></p>
+      </div>
+    </div>
+  </div>
+</div><!--container-->
+<br>
+
+</body>
+</html>
