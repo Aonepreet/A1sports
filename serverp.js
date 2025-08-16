@@ -192,7 +192,7 @@ ap.post("/savetournaments", async function(req,resp){
        })
     
 })
-/*************************SHOWING TOURNAMENTS IN CARDS************************ */
+/*************************SHOWING TOURNAMENTS IN CARDS**************************/
 ap.get("/angular",function(req,resp)
 {
     //resp.send("<b><u>Its Home Page</b>");
@@ -222,7 +222,7 @@ ap.get("/fetch-all-tournaments",function(req,resp)
 
 })
 
-/**************************FILLING CITY OPTION VALA COMBO************* */
+/**************************FILLING CITY OPTION VALA COMBO**************/
 ap.get("/fetch-all-cities",function(req,resp)
 {
     
@@ -286,7 +286,7 @@ ap.post("/saveplr", async function(req,resp){
        //save data acc to columns in seq in aiven vala database
        mysqlServer.query("insert into players values(?,?,?,?,?,?,?,?,?,?)",[req.body.txtmail,req.body.txtname,req.body.txtgames,req.body.txtcontact,req.body.txtdate.slice(0,11),req.body.txtgender,req.body.txtaddress,req.body.txtcity,req.body.txtproof,req.body.txtprev],function(err){
         if(err==null)
-            resp.send("RECORD SENT SUCCESSFULLY....");
+            resp.send("PLAYER RECORDED SUCCESSFULLY....");
         else
         {resp.send(err.message);
             console.log(err.message)
@@ -303,7 +303,7 @@ ap.post("/updatePlr",async function(req,resp){
        //mysqlServer.query("insert into userss values(?,?,?,?,?)",[req.body.txtmail,req.body.txtpwd,req.body.utype,req.body.dob,req.body.profilepic],function(err){
         mysqlServer.query("update players set name=?,games=?,mobile=?,dob=?,gender=?,address=?,city=?,idproof=?,other_info=?  where emailid=?",[req.body.txtname,req.body.txtgames,req.body.txtcontact,req.body.txtdate.slice(0,11),req.body.txtgender,req.body.txtaddress,req.body.txtcity,req.body.txtproof,req.body.txtprev,req.body.txtmail],function(err){
         if(err==null)
-            resp.send("RECORD UPDATED SUCCESSFULLY....");
+            resp.send("PLAYER DATA UPDATED SUCCESSFULLY....");
         else
         {resp.send(err.message);
             console.log(err.message)
