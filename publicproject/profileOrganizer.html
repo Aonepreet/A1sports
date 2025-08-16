@@ -21,7 +21,7 @@
            $(document).ready(function(){
 
            /***************EMAIL VALA TBOX AUTO FILL***********************/
-           alert(localStorage.getItem("activeuser"));
+           //alert(localStorage.getItem("activeuser"));
            $("#txtmail").val(localStorage.getItem("activeuser")).attr("readonly",true);
 
 
@@ -79,6 +79,11 @@
         })
     });
            })
+           function goToDashboard() {
+    // Change the URL to whichever dashboard you want to go
+    window.location.href = "dashOrganizer.html"; 
+    // or window.location.href = "dashOrganizer.html";
+  }
 
 
    </script>
@@ -186,5 +191,14 @@
       </form>
     </div>
       
+
+    <!--back to dboard btn-->
+    <div class="container mt-3 mb-5">
+  <center>
+    <button class="btn btn-success btn-lg" onclick="goToDashboard()">
+      Go To Dashboard
+    </button>
+  </center>
+</div>
     </body>
   </html>
