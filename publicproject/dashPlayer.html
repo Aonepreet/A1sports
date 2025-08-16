@@ -72,6 +72,11 @@
           location.href="index.html";
         })
     })
+    function goToDashboard() {
+    // Change the URL to whichever dashboard you want to go
+    window.location.href = "index.html"; 
+    // or window.location.href = "index.html";
+  }
       
     </script>
 </head>
@@ -196,6 +201,15 @@
   </div>
 </div><!--container-->
 <br>
+
+ <!--back to home btn-->
+    <div class="container mt-5 mb-5">
+  <center>
+    <button class="btn btn-success btn-lg" onclick="goToDashboard()">
+      Go To Home
+    </button>
+  </center>
+</div>
 
 </body>
 </html>
