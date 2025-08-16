@@ -1,480 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!--BOOTSTRAP LINKING -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!--JQUERY LINKING-->
-    <script
-    src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
-    </script>
-    <!--FONTAWESOME LINLING-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <!--JQUERY CODE-->
-   <script>
-    $(document).ready(function()
-    {
-      // for signup wala email
-        $("#txtEmail").keyup(function(){
-            let email=$("#txtEmail").val();
-            let eexp=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            let res=eexp.test(email);
-              if(res==true)
-              {
-                $("#errMail").html("Email Id is valid");
-                $("#errMail").addClass("ok").removeClass("not-ok");
-              } 
-              else
-            $("#errMail").html("Invalid Email ID").addClass("not-ok").removeClass("ok");
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HuddleUp</title>
+  <!--BOOTSTRAP LINKING -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!--JQUERY LINKING-->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <!--FONTAWESOME LINKING-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    })
+  <!--JQUERY CODE-->
+  <script>
+$(document).ready(function () {
 
-    
-      // for login wala email
-      $("#txtemail").keyup(function(){
-            let email=$("#txtemail").val();
-            let eexp=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            let res=eexp.test(email);
-              if(res==true)
-              {
-                $("#errmail").html("Email Id is valid");
-                $("#errmail").addClass("ok").removeClass("not-ok");
-              } 
-              else
-            $("#errmail").html("Invalid Email ID").addClass("not-ok").removeClass("ok");})
-      //for signup wala password
-      $("#txtPwd").keyup(function(){
-                let pwd=$("#txtPwd").val();
-                let eexp=/^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
-                let res=eexp.test(pwd);
-                if(res==true)
-                  {
-                    $("#errPwd").html("Its Valid");
-                    $("#errPwd").addClass("ok").removeClass("not-ok");
-                    
-                  } 
+    // ===== Signup Email Validation =====
+    $("#txtEmail").keyup(function () {
+        let email = $(this).val();
+        let eexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (eexp.test(email)) {
+            $("#errMail").html("✅ Email is valid").addClass("ok").removeClass("not-ok");
+        } else {
+            $("#errMail").html("❌ Invalid Email").addClass("not-ok").removeClass("ok");
+        }
+    });
 
-                else
-                    $("#errPwd").html("Invalid password").addClass("not-ok").removeClass("ok");
+    // ===== Login Email Validation =====
+    $("#txtemail").keyup(function () {
+        let email = $(this).val();
+        let eexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (eexp.test(email)) {
+            $("#errmail").html("✅ Email is valid").addClass("ok").removeClass("not-ok");
+        } else {
+            $("#errmail").html("❌ Invalid Email").addClass("not-ok").removeClass("ok");
+        }
+    });
 
-        })
-  
+    // ===== Signup Password Validation =====
+    $("#txtPwd").keyup(function () {
+        let pwd = $(this).val();
+        let eexp = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
+        if (eexp.test(pwd)) {
+            $("#errPwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
+        } else {
+            $("#errPwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
+        }
+    });
 
+    // ===== Login Password Validation =====
+    $("#txtpwd").keyup(function () {
+        let pwd = $(this).val();
+        let eexp = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
+        if (eexp.test(pwd)) {
+            $("#errpwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
+        } else {
+            $("#errpwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
+        }
+    });
 
+    // ===== Eye toggle for signup =====
+    $("#eye").mouseenter(function () {
+        $("#txtPwd").prop("type", "text");
+        $(this).addClass("fa-eye-slash").removeClass("fa-eye");
+    }).mouseleave(function () {
+        $("#txtPwd").prop("type", "password");
+        $(this).addClass("fa-eye").removeClass("fa-eye-slash");
+    });
 
-    $("#eye").mouseenter(function(){
-                    $("#txtPwd").prop("type","text");
-                    $("#eye").addClass("fa-eye-slash").removeClass("fa-eye");
-            })
+    // ===== Eye toggle for login =====
+    $("#eyel").mouseenter(function () {
+        $("#txtpwd").prop("type", "text");
+        $(this).addClass("fa-eye-slash").removeClass("fa-eye");
+    }).mouseleave(function () {
+        $("#txtpwd").prop("type", "password");
+        $(this).addClass("fa-eye").removeClass("fa-eye-slash");
+    });
+// ==============signup button===========
+    $("#sbtn").click(function (e) {
+    e.preventDefault();
+    let emailid = $("#txtEmail").val();
+    let pwd = $("#txtPwd").val();
+    let utype = $("#utype").val();
+    let dos = new Date().toJSON().slice(0, 10);
 
-            $("#eye").mouseleave(function(){
-                    $("#txtPwd").prop("type","password");
-                    $("#eye").addClass("fa-eye").removeClass("fa-eye-slash");
-            })
-
-            //for login vali eye
-            $("#eyel").mouseenter(function(){
-                    $("#txtpwd").prop("type","text");
-                    $("#eyel").addClass("fa-eye-slash").removeClass("fa-eye");
-            })
-
-            $("#eyel").mouseleave(function(){
-                    $("#txtpwd").prop("type","password");
-                    $("#eyel").addClass("fa-eye").removeClass("fa-eye-slash");
-            })
-           
-        
-        
-        $("#sbtn").click(function(){
-          let emailid=$("#txtEmail").val();
-            let pwd=$("#txtPwd").val();
-            let utype=$("#utype").val();
-            let dos=new Date().toJSON().slice(0,10);
-            /*let day=date.getDate();
-            let month=date.getMonth()+1;
-            let year=date.getFullYear();
-            let dos=day-month-year;*/
-            
-
-            let obj={
-                type:"get",
-                url:"/signupdone",
-                data:{
-                    txtEmail:emailid,
-                    txtPwd:pwd,
-                    utype:utype,
-                    dos:dos
+    $.ajax({
+        type: "get",
+        url: "/signupdone",
+        data: { txtEmail: emailid, txtPwd: pwd, utype: utype, dos: dos },
+        success: function (response) {
+            alert(response); // Shows server message
+            if (response.toLowerCase().includes("success")) { // check if signup succeeded
+                localStorage.setItem("activeuser", emailid);
+                if (utype === "Player") {
+                    location.href = "dashPlayer.html";
+                } else if (utype === "Organizer") {
+                    location.href = "dashOrganizer.html";
                 }
+            } else {
+                alert("Signup Failed: " + response);
             }
-            //fire AJAX request
-            $.ajax(obj).done(function(response){
-                alert(response);
-            }).fail(function(err){
-                
-                alert("Server Error");
-            })
+        },
+        error: function () { alert("Server Error"); }
+    });
+});
 
-        })
+    // ===== Login Button =====
+$("#lbtn").click(function (e) {
+    e.preventDefault();
+    let emailid = $("#txtemail").val();
+    let pwd = $("#txtpwd").val();
 
+    $.ajax({
+        type: "get",
+        url: "/logindone",
+        data: { txtemail: emailid, txtpwd: pwd },
+        success: function (response) {
+            alert(response); // server message
 
-        $("#lbtn").click(function(){
-          let emailid=$("#txtemail").val();
-            let pwd=$("#txtpwd").val();
-            let obj={
-                type:"get",
-                url:"/logindone",
-                data:{
-                    txtemail:emailid,
-                    txtpwd:pwd
-                    
-                }
+            // check if login succeeded
+            if (response.toLowerCase().includes("player")) {
+                localStorage.setItem("activeuser", emailid);
+                location.href = "dashPlayer.html";
+            } else if (response.toLowerCase().includes("organizer")) {
+                localStorage.setItem("activeuser", emailid);
+                location.href = "dashOrganizer.html";
+            } else {
+                alert("Invalid User");
             }
-            //fire AJAX request
-            $.ajax(obj).done(function(response){
-                alert(response);
-                //resp=response;
-                if(response=="Player")
-                {
-                  location.href="dashPlayer.html";
-                  localStorage.setItem("activeuser",emailid);
-                }
-                else if(response=="Organizer")
-                {
-                  location.href="dashOrganizer.html";
-                  localStorage.setItem("activeuser",emailid);
-                }
-                else{
-                  alert("Invalid User");
-                }
-            }).fail(function(err){
-                
-                alert("Server Error");
-            })
+        },
+        error: function () { alert("Server Error"); }
+    });
+});
 
+
+});
+</script>
+
+  <!--<script>
+    $(document).ready(function () {
+      // for signup email
+      $("#txtEmail").keyup(function () {
+        let email = $("#txtEmail").val();
+        let eexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let res = eexp.test(email);
+        if (res == true) {
+          $("#errMail").html("Email Id is valid");
+          $("#errMail").addClass("ok").removeClass("not-ok");
+        }
+        else
+          $("#errMail").html("Invalid Email ID").addClass("not-ok").removeClass("ok");
+      })
+
+      // for login email
+      $("#txtemail").keyup(function () {
+        let email = $("#txtemail").val();
+        let eexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let res = eexp.test(email);
+        if (res == true) {
+          $("#errmail").html("Email Id is valid");
+          $("#errmail").addClass("ok").removeClass("not-ok");
+        }
+        else
+          $("#errmail").html("Invalid Email ID").addClass("not-ok").removeClass("ok");
+      })
+
+      // for signup password
+      $("#txtPwd").keyup(function () {
+        let pwd = $("#txtPwd").val();
+        let eexp = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
+        let res = eexp.test(pwd);
+        if (res == true) {
+          $("#errPwd").html("Its Valid");
+          $("#errPwd").addClass("ok").removeClass("not-ok");
+        }
+        else
+          $("#errPwd").html("Invalid password").addClass("not-ok").removeClass("ok");
+      })
+
+      // Login password validation
+$("#txtpwd").keyup(function () {
+    let pwd = $("#txtpwd").val();
+    // At least 1 number, 1 special character, 6-16 characters
+    let eexp = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
+    let res = eexp.test(pwd);
+
+    if (res) {
+        $("#errpwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
+    } else {
+        $("#errpwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
+    }
+});
+
+      $("#eye").mouseenter(function () {
+        $("#txtPwd").prop("type", "text");
+        $("#eye").addClass("fa-eye-slash").removeClass("fa-eye");
+      })
+      $("#eye").mouseleave(function () {
+        $("#txtPwd").prop("type", "password");
+        $("#eye").addClass("fa-eye").removeClass("fa-eye-slash");
+      })
+
+      // login eye
+      $("#eyel").mouseenter(function () {
+        $("#txtpwd").prop("type", "text");
+        $("#eyel").addClass("fa-eye-slash").removeClass("fa-eye");
+      })
+      $("#eyel").mouseleave(function () {
+        $("#txtpwd").prop("type", "password");
+        $("#eyel").addClass("fa-eye").removeClass("fa-eye-slash");
+      })
+
+      // signup btn
+      $("#sbtn").click(function () {
+        let emailid = $("#txtEmail").val();
+        let pwd = $("#txtPwd").val();
+        let utype = $("#utype").val();
+        let dos = new Date().toJSON().slice(0, 10);
+
+        let obj = {
+          type: "get",
+          url: "/signupdone",
+          data: {
+            txtEmail: emailid,
+            txtPwd: pwd,
+            utype: utype,
+            dos: dos
+          }
+        }
+        $.ajax(obj).done(function (response) {
+          alert(response);
+        }).fail(function (err) {
+          alert("Server Error");
         })
+      })
+
+      // login btn
+      $("#lbtn").click(function () {
+        let emailid = $("#txtemail").val();
+        let pwd = $("#txtpwd").val();
+        let obj = {
+          type: "get",
+          url: "/logindone",
+          data: {
+            txtemail: emailid,
+            txtpwd: pwd
+          }
+        }
+        $.ajax(obj).done(function (response) {
+          alert(response);
+          if (response == "Player") {
+            location.href = "dashPlayer.html";
+            localStorage.setItem("activeuser", emailid);
+          }
+          else if (response == "Organizer") {
+            location.href = "dashOrganizer.html";
+            localStorage.setItem("activeuser", emailid);
+          }
+          else {
+            alert("Invalid User");
+          }
+        }).fail(function (err) {
+          alert("Server Error");
+        })
+      })
     })
-   
+  </script>-->
 
+  <style>
+    .c1 {
+      margin-left: 10px;
+      text-align: center;
+      margin-top: 20px;
+      color: rgb(1, 1, 28);
+    }
 
-  
- </script>
+    .cbody {
+      background-color: rgb(2, 48, 78);
+    }
 
+    .err {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 10px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
 
+    .ok {
+      color: green;
+    }
 
+    .not-ok {
+      color: red;
+    }
 
-    <style>
-        .c1{
-            margin-left: 25px;text-align: center;margin-top: 20px;
-        }
-        .cbody{
-            background-color: rgb(2, 48, 78);
-        }
-        #exampleModalLabel{
-            text-align: center;color: blue;margin-left: 190px;
-        }
-        #picsignup{
-            align-content: center;width: 70px;height: 70px;margin-left: 180px;
-            
-        }
-        #piclogin{
-            align-content: center;width: 70px;height: 70px;margin-left: 180px;
-            
-        }
-        .err{
-            margin-top: 5px; margin-bottom: 10px;font-size: 10px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-        .ok{
-            color: green;
-        }
-        .not-ok{
-            color:red;
-        }
-        #eye{
-          float:right;margin-top: -22px;margin-right: 7px;
-        }
-        #eyel{
-          float:right;margin-top: -22px;margin-right: 7px;
-        }
-        #services{
-          align-items:flex-end;
-        }
-        #aboutus{
-          align-items:flex-end;
-        }
-        #reachus{
-          align-items:flex-end;
-        }
-    </style>
+    #eye,
+    #eyel {
+      float: right;
+      margin-top: -22px;
+      margin-right: 7px;
+    }
+  </style>
 </head>
+
 <body class="cbody">
-    <!--BOOTSTRAP LINKING-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!--SIGNUP MODAL CODE-->
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Signup</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                    <table>
-                        <center>
-                              <tr>
-                                  <td><center>
-                                        <img id="picsignup" src="./images/log-in (1).png"></center>
-                                  </td>
-                              </tr>
-                        </center> 
-                    </table>       
-              </form>
-              <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp">
-                  
-                  <div class="err" id="errMail">*</div>
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="txtPwd" name="txtPwd" >
-                  
-                  <i class="fa-solid fa-eye fa-bounce" id="eye"></i>
-                  <div class="err" id="errPwd">*</div>
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">User Type</label>
-                  <select id="utype" name="utype" class="form-control">
-                    <option value="none" disabled selected >Select</option>
-                    <option value="Player" >Player</option>
-                    
-                    <option value="Organizer" >Organizer</option>
-                    
-            
-                </select>
-                  
-                  
-                </div>
-                
-                <div><center><font>Already have an account? <a href="#close" class='forum-title' name="linktologin" data-bs-toggle="modal" data-bs-target="#loginModal">Login here</a></font></center></div><br>
-                
-              </form>
-            </div>
-            <div class="modal-footer">
-              
-              <button type="button" class="btn btn-primary" name="sbtn" id="sbtn" formaction="/signupdone">Signin</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- LOGIN MODAL CODE-->
-
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <!--BOOTSTRAP JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<!--signup modal-->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
+    <div class="modal-content p-3">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="signupLabel">Signup</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form>
-              <table>
-                  <center>
-                        <tr>
-                            <td><center>
-                                  <img id="piclogin" src="./images/password.png"></center>
-                            </td>
-                        </tr>
-                  </center> 
-              </table>       
-        </form>
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="txtemail" name="txtemail" aria-describedby="emailHelp">
-            
-            <div class="err" id="errmail">*</div>
+        <form id="signupForm">
+          <div class="text-center mb-3">
+            <img id="picsignup" src="./images/log-in (1).png" class="img-fluid" style="max-width:80px;">
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="txtEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+            <div class="err" id="errMail">*</div>
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="txtPwd" class="form-label">Password</label>
+            <input type="password" class="form-control pe-5" id="txtPwd" name="txtPwd">
+            <i class="fa-solid fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" id="eye" style="cursor:pointer;"></i>
+            <div class="err" id="errPwd">*</div>
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="txtpwd" name="txtpwd" >
-            
-            <i class="fa-solid fa-eye fa-bounce" id="eyel"></i>
-            <div class="err" id="errpwd">*</div>
+            <label for="utype" class="form-label">User Type</label>
+            <select id="utype" name="utype" class="form-select">
+              <option value="" disabled selected>Select</option>
+              <option value="Player">Player</option>
+              <option value="Organizer">Organizer</option>
+            </select>
           </div>
-          <div><center><font>New User? <a href="#close" class='forum-title' name="linktosignin" data-bs-toggle="modal" data-bs-target="#signupModal">Signin here</a></font></center></div><br>
-         
-          
-          
+          <div class="text-center mb-3">
+            <small>Already have an account? 
+              <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
+            </small>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" name="lbtn" id="lbtn" formaction="/logindone">Login</button>
+        <button type="button" class="btn btn-primary" id="sbtn">Signup</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       
       </div>
     </div>
   </div>
 </div>
 
-
-<form>
-   <div class="container">
-      <div class="row mt-2">
-         
-        <nav class="navbar bg-light text-dark w-100" >
-        
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                  <img src="./images/ea-sports.png" alt="Logo" width="55" height="54" class="d-inline-block"><nsbp><nsbp>
-                    <font class="c1">EA Sports</font>
-                    <a class="nav-link active" id="services" aria-current="page" href="#section1">Services</a>
-                    <a class="nav-link active" id="aboutus" aria-current="page" href="#section2">About Us</a>
-                    <a class="nav-link active" id="reachus" aria-current="page" href="#section3">Reach Us</a>
-                </a>
-                <a>
-
-                  
-                    <!--<a class="nav-link active" aria-current="page" href="#">Home</a>-->
-                  
-          
-                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" >Signup</button>
-                    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#loginModal"  >Login</button>
-                </a>
-            </div> 
-        </nav>
+<!--LOGIN MODAL-->
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="text-center mb-3">
+            <img id="piclogin" src="./images/log-in (1).png" class="img-fluid" style="max-width:80px;">
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="txtemail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="txtemail" name="txtemail">
+            <div class="err" id="errmail">*</div>
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="txtpwd" class="form-label">Password</label>
+            <input type="password" class="form-control pe-5" id="txtpwd" name="txtpwd">
+            <i class="fa-solid fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" id="eyel" style="cursor:pointer;"></i>
+            <div class="err" id="errpwd">*</div>
+          </div>
+          <div class="text-center mb-3">
+            <small>Don't have an account? 
+              <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Signup here</a>
+            </small>
+          </div>
+        </form>
       </div>
-    </form>
-
-
-
-    <!--COROUSAL******************-->
-    <div style="margin-top: 5px;">
-      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./images/pexels-coco-championship-191448-598656.jpg" class="d-block w-100" alt="..." height="600px">
-          </div>
-          <div class="carousel-item">
-            <img src="./images/pexels-expressivestanley-3148452.jpg" class="d-block w-100" alt="..." height="600px">
-          </div>
-          <div class="carousel-item">
-            <img src="./images/pexels-timmossholder-1080882.jpg" class="d-block w-100" alt="..." height="600px">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="lbtn">Login</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
 
-    <!--OUR PRODUCTS*************-->
-    <hr>
-<div id="section1" style="line-height: 60px;background-color: white;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;text-align: center;font-size: 30px;">Our Services</div>
-<div class="container">
+<style>
+/* Error and success styles */
+.ok { color: green; font-size: 0.9rem; }
+.not-ok { color: red; font-size: 0.9rem; }
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .modal-dialog { max-width: 95%; margin: 1rem; }
+}
+</style>
+
+
+<style>
+/* Error and success styles */
+.ok { color: green; font-size: 0.9rem; }
+.not-ok { color: red; font-size: 0.9rem; }
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .modal-dialog { max-width: 95%; margin: 1rem; }
+}
+</style>
+
+
+
+
+      
+
+  <!--NAVBAR-->
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="./images/logonew.webp" alt="Logo" width="65" height="65" class="d-inline-block">
+        <span class="ms-2 c1"><b>HuddleUp - Game On, Always</b></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#section1"><u>Services</u></a></li>
+          <li class="nav-item"><a class="nav-link" href="#section2"><u>About Us</u></a></li>
+          <li class="nav-item"><a class="nav-link" href="#section3"><u>Reach Us</u></a></li>
+        </ul>
+        <div class="ms-3">
+          <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="modal"
+            data-bs-target="#signupModal">Signup</button>
+          <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+            data-bs-target="#loginModal">Login</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--CAROUSEL-->
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="margin-top: 5px;">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./images/pexels-coco-championship-191448-598656.jpg" class="d-block w-100" alt="..." height="600px">
+      </div>
+      <div class="carousel-item">
+        <img src="./images/pexels-expressivestanley-3148452.jpg" class="d-block w-100" alt="..." height="600px">
+      </div>
+      <div class="carousel-item">
+        <img src="./images/pexels-timmossholder-1080882.jpg" class="d-block w-100" alt="..." height="600px">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <!--OUR SERVICES-->
+  <hr>
+  <div id="section1"
+    style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px;">
+    Our Services</div>
+  <div class="container">
     <div class="row mt-2 mb-2">
-      <div class="col-md-3 mt-2 " style="float: left;">
-        <div class="card h-150" >
-          <img src="./images/stadium.png" class="card-img-top" alt="..." />
+      <div class="col-sm-6 col-md-3 mt-2">
+        <div class="card h-100">
+          <img src="./images/stadium.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title">Publish Tournaments</h5>
-            <p class="card-text">
-              Looking for platform to post the events you are organising ? Here is the service.
-            </p>
+            <p class="card-text">Looking for platform to post the events you are organising ? Here is the service.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mt-2 " style="float: left;">
-        <div class="card h-150" >
-          <img src="./images/planning.png" class="card-img-top" alt="..." />
+      <div class="col-sm-6 col-md-3 mt-2">
+        <div class="card h-100">
+          <img src="./images/planning.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title">Upcoming Tournaments</h5>
-            <p class="card-text">
-              Stay updated on upcoming events of your interest !! Get latest schedules here.
-            </p>
-            
+            <p class="card-text">Stay updated on upcoming events of your interest !! Get latest schedules here.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mt-2"  style="float: left;">
-        <div class="card h-150" >
-          <img src="./images/trophy.png" class="card-img-top" alt="..." />
+      <div class="col-sm-6 col-md-3 mt-2">
+        <div class="card h-100">
+          <img src="./images/trophy.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title">Win Prizes</h5>
-            <p class="card-text">
-              Compete , excel and win amazing prizes ! Stand out as a champion in sport of your interest.
-            </p>
-            
+            <p class="card-text">Compete , excel and win amazing prizes ! Stand out as a champion.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-3 mt-2"  style="float: left;">
-        <div class="card h-150" >
-          <img src="./images/certificate.png" class="card-img-top" alt="..." />
+      <div class="col-sm-6 col-md-3 mt-2">
+        <div class="card h-100">
+          <img src="./images/certificate.png" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title">Certification</h5>
-            <p class="card-text">
-              Showcase your skills and earn recognition ! Avail certificates on every effort !!
-            </p>
-            
+            <p class="card-text">Showcase your skills and earn recognition ! Avail certificates on every effort !!</p>
           </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
 
-<!-- ******************************OUR TEAM********************************-->
-<div id="section2" style="line-height: 60px;background-color: white;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;text-align: center;font-size: 30px;">Our Team</div>
-<div class="container">
-   <div class="row mt-2">
-  <div class="card mb-3 ms-5" style="max-width: 540px">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="./images/rjshsir.jpeg" class="img-fluid rounded-circle float-start" alt="...">
+  <!--OUR TEAM-->
+  <div id="section2"
+    style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px;">
+    Our Team</div>
+  <div class="container">
+    <div class="row mt-2">
+      <div class="col-md-6 col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4 text-center">
+              <img src="./images/bussiness-man.png" class="img-fluid rounded-circle mx-auto d-block" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Mentor</h5>
+                <p class="card-text">Under the Guidance Of <br><b>Mr. Rajesh Bansal</b> <br>Founder-BCE Bathinda</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title ms-5">Mentor</h5>
-          <p class="card-text ms-5">Mr. Rajesh Bansal<br>BCE,Bathinda<br>Author of Real Java </p>
-          
+
+      <div class="col-md-6 col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4 text-center">
+              <img src="./images/bussiness-man.png" class="img-fluid rounded-circle mx-auto d-block" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Developed By</h5>
+                <p class="card-text">Aonepreet Kaur<br>Full Stack Developer<br>Student at GZSCCET,Bti</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="card mb-3 ms-5 me-4" style="max-width: 540px;">
-    <div class="row ">
-      <div class="col-md-4">
-        <img src="./images/bussiness-man.png" class="img-fluid rounded-circle float-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Developed By</h5>
-          <p class="card-text">Aonepreet Kaur<br>Full Stack Developer<br>Student at GZSCCET,Bti</p>
-          
-        </div>
-      </div>
+  <!--REACH US-->
+  <div id="section3"
+    style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px;">
+    Reach Us</div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41431.72646911773!2d74.88249693051603!3d30.17156583657495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39172d0bb1737c33%3A0xed9d3631bdaa7e49!2sGiani%20Zail%20Singh%20Campus%20College%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1731815245629!5m2!1sen!2sin"
+        width="100%" height="450" style="border: 2px;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 
-</div>
-</div>
-<div id="section3" style="line-height: 60px;background-color: white;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;text-align: center;font-size: 30px;">Reach Us</div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41431.72646911773!2d74.88249693051603!3d30.17156583657495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39172d0bb1737c33%3A0xed9d3631bdaa7e49!2sGiani%20Zail%20Singh%20Campus%20College%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1731815245629!5m2!1sen!2sin" width="1600" height="450"  style="border: 2px;;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-<div style="line-height: 30px;margin-top: 9px;background-color: white;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;text-align: center;font-size: 15px;">copyright@2021<br>easports.com</div>
+  <!--FOOTER-->
+  
+  <footer class="bg-dark text-white pt-4 pb-2 mt-5">
+  <div class="container text-center">
+    <p class="mb-1">&copy; 2025 <strong>HuddleUp</strong>. All Rights Reserved.</p>
+    
+  </div>
+</footer>
+  <!--SIGNUP MODAL-->
+  <!-- (Your existing signup modal code unchanged) -->
+
+  <!--LOGIN MODAL-->
+  <!-- (Your existing login modal code unchanged) -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
