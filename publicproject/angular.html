@@ -37,7 +37,7 @@
           $http.get(url).then(done,fail);
           function done(response)
           {
-            alert(JSON.stringify(response.data));
+           // alert(JSON.stringify(response.data));
             $scope.jsonArrayC=response.data;
           }
           function fail(err)
@@ -53,7 +53,7 @@
           $http.get(url).then(done,fail);
           function done(response)
           {
-            alert(JSON.stringify(response.data));
+            //alert(JSON.stringify(response.data));
             $scope.jsonArrayG=response.data;
           }
           function fail(err)
@@ -67,10 +67,15 @@
            {
             //alert(JSON.stringify($scope.jsonArray[index]));
             $scope.selObj=$scope.jsonArray[index];
-            alert($scope.selObj);
+            //alert($scope.selObj);
            }
             
         });
+        function goToDashboard() {
+    // Change the URL to whichever dashboard you want to go
+    window.location.href = "dashPlayer.html"; 
+    // or window.location.href = "dashOrganizer.html";
+  }
      </script>
 </head>
 <!--Body is view n step 2 is to link body with module nad controller -->
@@ -201,6 +206,15 @@
         </div>
       </div>
     </center>
+    
+<!--back to dboard btn-->
+    <div class="container mt-5 mb-5">
+  <center>
+    <button class="btn btn-success btn-lg" onclick="goToDashboard()">
+      Go To Dashboard
+    </button>
+  </center>
+</div>
     
 </body>
 </html>
