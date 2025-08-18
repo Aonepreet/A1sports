@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,129 +18,129 @@
 
   <!--JQUERY CODE-->
   <script>
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    // ===== Signup Email Validation =====
-    $("#txtEmail").keyup(function () {
+      // ===== Signup Email Validation =====
+      $("#txtEmail").keyup(function () {
         let email = $(this).val();
         let eexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (eexp.test(email)) {
-            $("#errMail").html("✅ Email is valid").addClass("ok").removeClass("not-ok");
+          $("#errMail").html("✅ Email is valid").addClass("ok").removeClass("not-ok");
         } else {
-            $("#errMail").html("❌ Invalid Email").addClass("not-ok").removeClass("ok");
+          $("#errMail").html("❌ Invalid Email").addClass("not-ok").removeClass("ok");
         }
-    });
+      });
 
-    // ===== Login Email Validation =====
-    $("#txtemail").keyup(function () {
+      // ===== Login Email Validation =====
+      $("#txtemail").keyup(function () {
         let email = $(this).val();
         let eexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (eexp.test(email)) {
-            $("#errmail").html("✅ Email is valid").addClass("ok").removeClass("not-ok");
+          $("#errmail").html("✅ Email is valid").addClass("ok").removeClass("not-ok");
         } else {
-            $("#errmail").html("❌ Invalid Email").addClass("not-ok").removeClass("ok");
+          $("#errmail").html("❌ Invalid Email").addClass("not-ok").removeClass("ok");
         }
-    });
+      });
 
-    // ===== Signup Password Validation =====
-    $("#txtPwd").keyup(function () {
+      // ===== Signup Password Validation =====
+      $("#txtPwd").keyup(function () {
         let pwd = $(this).val();
         let eexp = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
         if (eexp.test(pwd)) {
-            $("#errPwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
+          $("#errPwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
         } else {
-            $("#errPwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
+          $("#errPwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
         }
-    });
+      });
 
-    // ===== Login Password Validation =====
-    $("#txtpwd").keyup(function () {
+      // ===== Login Password Validation =====
+      $("#txtpwd").keyup(function () {
         let pwd = $(this).val();
         let eexp = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
         if (eexp.test(pwd)) {
-            $("#errpwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
+          $("#errpwd").html("✅ Valid Password").addClass("ok").removeClass("not-ok");
         } else {
-            $("#errpwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
+          $("#errpwd").html("❌ Invalid Password").addClass("not-ok").removeClass("ok");
         }
-    });
+      });
 
-    // ===== Eye toggle for signup =====
-    $("#eye").mouseenter(function () {
+      // ===== Eye toggle for signup =====
+      $("#eye").mouseenter(function () {
         $("#txtPwd").prop("type", "text");
         $(this).addClass("fa-eye-slash").removeClass("fa-eye");
-    }).mouseleave(function () {
+      }).mouseleave(function () {
         $("#txtPwd").prop("type", "password");
         $(this).addClass("fa-eye").removeClass("fa-eye-slash");
-    });
+      });
 
-    // ===== Eye toggle for login =====
-    $("#eyel").mouseenter(function () {
+      // ===== Eye toggle for login =====
+      $("#eyel").mouseenter(function () {
         $("#txtpwd").prop("type", "text");
         $(this).addClass("fa-eye-slash").removeClass("fa-eye");
-    }).mouseleave(function () {
+      }).mouseleave(function () {
         $("#txtpwd").prop("type", "password");
         $(this).addClass("fa-eye").removeClass("fa-eye-slash");
-    });
-// ==============signup button===========
-    $("#sbtn").click(function (e) {
-    e.preventDefault();
-    let emailid = $("#txtEmail").val();
-    let pwd = $("#txtPwd").val();
-    let utype = $("#utype").val();
-    let dos = new Date().toJSON().slice(0, 10);
+      });
+      // ==============signup button===========
+      $("#sbtn").click(function (e) {
+        e.preventDefault();
+        let emailid = $("#txtEmail").val();
+        let pwd = $("#txtPwd").val();
+        let utype = $("#utype").val();
+        let dos = new Date().toJSON().slice(0, 10);
 
-    $.ajax({
-        type: "get",
-        url: "/signupdone",
-        data: { txtEmail: emailid, txtPwd: pwd, utype: utype, dos: dos },
-        success: function (response) {
+        $.ajax({
+          type: "get",
+          url: "/signupdone",
+          data: { txtEmail: emailid, txtPwd: pwd, utype: utype, dos: dos },
+          success: function (response) {
             alert(response); // Shows server message
             if (response.toLowerCase().includes("success")) { // check if signup succeeded
-                localStorage.setItem("activeuser", emailid);
-                if (utype === "Player") {
-                    location.href = "dashPlayer.html";
-                } else if (utype === "Organizer") {
-                    location.href = "dashOrganizer.html";
-                }
+              localStorage.setItem("activeuser", emailid);
+              if (utype === "Player") {
+                location.href = "dashPlayer.html";
+              } else if (utype === "Organizer") {
+                location.href = "dashOrganizer.html";
+              }
             } else {
-                alert("Signup Failed: " + response);
+              alert("Signup Failed: " + response);
             }
-        },
-        error: function () { alert("Server Error"); }
-    });
-});
+          },
+          error: function () { alert("Server Error"); }
+        });
+      });
 
-    // ===== Login Button =====
-$("#lbtn").click(function (e) {
-    e.preventDefault();
-    let emailid = $("#txtemail").val();
-    let pwd = $("#txtpwd").val();
+      // ===== Login Button =====
+      $("#lbtn").click(function (e) {
+        e.preventDefault();
+        let emailid = $("#txtemail").val();
+        let pwd = $("#txtpwd").val();
 
-    $.ajax({
-        type: "get",
-        url: "/logindone",
-        data: { txtemail: emailid, txtpwd: pwd },
-        success: function (response) {
+        $.ajax({
+          type: "get",
+          url: "/logindone",
+          data: { txtemail: emailid, txtpwd: pwd },
+          success: function (response) {
             alert(response); // server message
 
             // check if login succeeded
             if (response.toLowerCase().includes("player")) {
-                localStorage.setItem("activeuser", emailid);
-                location.href = "dashPlayer.html";
+              localStorage.setItem("activeuser", emailid);
+              location.href = "dashPlayer.html";
             } else if (response.toLowerCase().includes("organizer")) {
-                localStorage.setItem("activeuser", emailid);
-                location.href = "dashOrganizer.html";
+              localStorage.setItem("activeuser", emailid);
+              location.href = "dashOrganizer.html";
             } else {
-                alert("Invalid User");
+              alert("Invalid User");
             }
-        },
-        error: function () { alert("Server Error"); }
+          },
+          error: function () { alert("Server Error"); }
+        });
+      });
+
+
     });
-});
-
-
-});
-</script>
+  </script>
 
   <!--<script>
     $(document).ready(function () {
@@ -312,180 +313,237 @@ $("#txtpwd").keyup(function () {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-<!--signup modal-->
-<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
-    <div class="modal-content p-3">
-      <div class="modal-header">
-        <h5 class="modal-title" id="signupLabel">Signup</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <form id="signupForm">
-          <div class="text-center mb-3">
-            <img id="picsignup" src="./images/log-in (1).png" class="img-fluid" style="max-width:80px;">
-          </div>
-          <div class="mb-3 position-relative">
-            <label for="txtEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="txtEmail" name="txtEmail">
-            <div class="err" id="errMail">*</div>
-          </div>
-          <div class="mb-3 position-relative">
-            <label for="txtPwd" class="form-label">Password</label>
-            <input type="password" class="form-control pe-5" id="txtPwd" name="txtPwd">
-            <i class="fa-solid fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" id="eye" style="cursor:pointer;"></i>
-            <div class="err" id="errPwd">*</div>
-          </div>
-          <div class="mb-3">
-            <label for="utype" class="form-label">User Type</label>
-            <select id="utype" name="utype" class="form-select">
-              <option value="" disabled selected>Select</option>
-              <option value="Player">Player</option>
-              <option value="Organizer">Organizer</option>
-            </select>
-          </div>
-          <div class="text-center mb-3">
-            <small>Already have an account? 
-              <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
-            </small>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="sbtn">Signup</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--LOGIN MODAL-->
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
-    <div class="modal-content p-3">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginLabel">Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <form id="loginForm">
-          <div class="text-center mb-3">
-            <img id="piclogin" src="./images/log-in (1).png" class="img-fluid" style="max-width:80px;">
-          </div>
-          <div class="mb-3 position-relative">
-            <label for="txtemail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="txtemail" name="txtemail">
-            <div class="err" id="errmail">*</div>
-          </div>
-          <div class="mb-3 position-relative">
-            <label for="txtpwd" class="form-label">Password</label>
-            <input type="password" class="form-control pe-5" id="txtpwd" name="txtpwd">
-            <i class="fa-solid fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" id="eyel" style="cursor:pointer;"></i>
-            <div class="err" id="errpwd">*</div>
-          </div>
-          <div class="text-center mb-3">
-            <small>Don't have an account? 
-              <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Signup here</a>
-            </small>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="lbtn">Login</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <!--signup modal-->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupLabel">Signup</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="signupForm">
+            <div class="text-center mb-3">
+              <img id="picsignup" src="./images/log-in (1).png" class="img-fluid" style="max-width:80px;">
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="txtEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+              <div class="err" id="errMail">*</div>
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="txtPwd" class="form-label">Password</label>
+              <input type="password" class="form-control pe-5" id="txtPwd" name="txtPwd">
+              <i class="fa-solid fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" id="eye"
+                style="cursor:pointer;"></i>
+              <div class="err" id="errPwd">*</div>
+            </div>
+            <div class="mb-3">
+              <label for="utype" class="form-label">User Type</label>
+              <select id="utype" name="utype" class="form-select">
+                <option value="" disabled selected>Select</option>
+                <option value="Player">Player</option>
+                <option value="Organizer">Organizer</option>
+              </select>
+            </div>
+            <div class="text-center mb-3">
+              <small>Already have an account?
+                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
+              </small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="sbtn">Signup</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<style>
-/* Error and success styles */
-.ok { color: green; font-size: 0.9rem; }
-.not-ok { color: red; font-size: 0.9rem; }
-
-/* Responsive adjustments */
-@media (max-width: 576px) {
-  .modal-dialog { max-width: 95%; margin: 1rem; }
-}
-</style>
-
-
-<style>
-/* Error and success styles */
-.ok { color: green; font-size: 0.9rem; }
-.not-ok { color: red; font-size: 0.9rem; }
-
-/* Responsive adjustments */
-@media (max-width: 576px) {
-  .modal-dialog { max-width: 95%; margin: 1rem; }
-}
-</style>
-
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
-  <div class="container-fluid">
-    <!-- Logo + Brand -->
-    <a class="navbar-brand d-flex align-items-center flex-wrap" href="#">
-      <!-- Logo: smaller on xs screens -->
-      <img src="./images/logonew.webp" alt="Logo" class="d-inline-block" style="width: 45px; height: 45px;"
-           srcset="./images/logonew.webp 1x, ./images/logonew.webp 2x">
-      <!-- Full text on sm and larger -->
-      <span class="ms-2 fw-bold d-none d-sm-inline" style="font-size: 1.2rem;">Huddle Up - Game On, Always</span>
-      <!-- Short text on xs screens -->
-      <span class="ms-2 fw-bold d-inline d-sm-none" style="font-size: 1rem;">Huddle Up</span>
-    </a>
-
-    <!-- Hamburger Button -->
-    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Menu Items -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#section1">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#section2">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#section3">Reach Us</a>
-        </li>
-      </ul>
-
-      <!-- Buttons -->
-      <div class="d-flex ms-lg-3 mt-2 mt-lg-0">
-        <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
-        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+  <!--LOGIN MODAL-->
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm">
+            <div class="text-center mb-3">
+              <img id="piclogin" src="./images/log-in (1).png" class="img-fluid" style="max-width:80px;">
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="txtemail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="txtemail" name="txtemail">
+              <div class="err" id="errmail">*</div>
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="txtpwd" class="form-label">Password</label>
+              <input type="password" class="form-control pe-5" id="txtpwd" name="txtpwd">
+              <i class="fa-solid fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" id="eyel"
+                style="cursor:pointer;"></i>
+              <div class="err" id="errpwd">*</div>
+            </div>
+            <div class="text-center mb-3">
+              <small>Don't have an account?
+                <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Signup here</a>
+              </small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="lbtn">Login</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</nav>
 
-<!-- Optional CSS for smaller screens -->
-<style>
-  @media (max-width: 576px) {
-    .navbar-brand img {
-      width: 40px !important;
-      height: 40px !important;
+  <style>
+    /* Error and success styles */
+    .ok {
+      color: green;
+      font-size: 0.9rem;
     }
-  }
-</style>
+
+    .not-ok {
+      color: red;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .modal-dialog {
+        max-width: 95%;
+        margin: 1rem;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* Error and success styles */
+    .ok {
+      color: green;
+      font-size: 0.9rem;
+    }
+
+    .not-ok {
+      color: red;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .modal-dialog {
+        max-width: 95%;
+        margin: 1rem;
+      }
+    }
+
+
+
+
+    /* FADE-IN ON SCROLL */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SLIDE-IN LEFT */
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* HOVER ZOOM EFFECT */
+    .hover-zoom {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-zoom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 
 
 
 
 
-      
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+    <div class="container-fluid">
+      <!-- Logo + Brand -->
+      <a class="navbar-brand d-flex align-items-center flex-wrap" href="#">
+        <!-- Logo: smaller on xs screens -->
+        <img src="./images/logonew.webp" alt="Logo" class="d-inline-block" style="width: 45px; height: 45px;"
+          srcset="./images/logonew.webp 1x, ./images/logonew.webp 2x">
+        <!-- Full text on sm and larger -->
+        <span class="ms-2 fw-bold d-none d-sm-inline" style="font-size: 1.2rem;">Huddle Up - Game On, Always</span>
+        <!-- Short text on xs screens -->
+        <span class="ms-2 fw-bold d-inline d-sm-none" style="font-size: 1rem;">Huddle Up</span>
+      </a>
 
+      <!-- Hamburger Button -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu Items -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#section1">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section2">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section3">Reach Us</a>
+          </li>
+        </ul>
+
+        <!-- Buttons -->
+        <div class="d-flex ms-lg-3 mt-2 mt-lg-0">
+          <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="modal"
+            data-bs-target="#signupModal">Signup</button>
+          <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+            data-bs-target="#loginModal">Login</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Optional CSS for smaller screens -->
+  <style>
+    @media (max-width: 576px) {
+      .navbar-brand img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+    }
+  </style>
 
 
   <!--CAROUSEL-->
-  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="margin-top: 5px;">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="margin-top: 10px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="./images/pexels-coco-championship-191448-598656.jpg" class="d-block w-100" alt="..." height="600px">
@@ -497,20 +555,22 @@ $("#txtpwd").keyup(function () {
         <img src="./images/pexels-timmossholder-1080882.jpg" class="d-block w-100" alt="..." height="600px">
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="next">
       <span class="carousel-control-next-icon"></span>
     </button>
   </div>
- 
+
   <!--OUR SERVICES-->
   <hr>
   <div id="section1"
     style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px;">
     Our Services</div>
-  <div class="container">
+  <div class="container hover-zoom">
     <div class="row mt-2 mb-2">
       <div class="col-sm-6 col-md-3 mt-2">
         <div class="card h-100">
@@ -551,64 +611,71 @@ $("#txtpwd").keyup(function () {
     </div>
   </div>
 
-    <!-- WHAT PEOPLE SAY SECTION -->
-<section class="py-5 " style="background-color: rgb(2, 48, 78);">
-  <div id="section1"
-    style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px; margin-bottom: px;">
-    What People Say</div>
-  <div class="container">9
-   
-    <div class="row g-4">
 
-      <!-- Review 1 -->
-      <div class="col-md-6 col-lg-3">
-        <div class="card shadow-sm h-100 text-center p-3">
-          <img src="https://img.icons8.com/?size=160&id=jF8g9G3v7KE6&format=png" class="rounded-circle mx-auto mb-3" alt="Player 1">
-          <h6 class="fw-bold">Rahul Sharma</h6>
-          <small class="text-muted">Basketball Player</small>
-          <p class="mt-2">“HuddleUp helped me find weekly matches easily. Great platform for sports lovers!”</p>
+
+  <!-- WHAT PEOPLE SAY SECTION -->
+  <section class="py-5 fade-in " style="background-color: rgb(2, 48, 78);">
+    <div id="section1"
+      style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px; margin-bottom: px;">
+      What People Say</div>
+    <div class="container hover-zoom">9
+
+      <div class="row g-4">
+
+        <!-- Review 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm h-100 text-center p-3">
+            <img src="https://img.icons8.com/?size=160&id=jF8g9G3v7KE6&format=png" class="rounded-circle mx-auto mb-3"
+              alt="Player 1">
+            <h6 class="fw-bold">Rahul Sharma</h6>
+            <small class="text-muted">Basketball Player</small>
+            <p class="mt-2">“HuddleUp helped me find weekly matches easily. Great platform for sports lovers!”</p>
+          </div>
         </div>
-      </div>
 
-      
-      <div class="col-md-6 col-lg-3">
-        <div class="card shadow-sm h-100 text-center p-3">
-          <img src="https://img.icons8.com/?size=160&id=68761&format=png" class="rounded-circle mx-auto mb-3" alt="Player 2">
-          <h6 class="fw-bold">Simran Kaur</h6>
-          <small class="text-muted">Football Match Organizer</small>
-          <p class="mt-2">“Managing tournaments has become so simple. Players join instantly through HuddleUp.”</p>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm h-100 text-center p-3">
+            <img src="https://img.icons8.com/?size=160&id=68761&format=png" class="rounded-circle mx-auto mb-3"
+              alt="Player 2">
+            <h6 class="fw-bold">Simran Kaur</h6>
+            <small class="text-muted">Football Match Organizer</small>
+            <p class="mt-2">“Managing tournaments has become so simple. Players join instantly through HuddleUp.”</p>
+          </div>
         </div>
-      </div>
 
-      
-      <div class="col-md-6 col-lg-3">
-        <div class="card shadow-sm h-100 text-center p-3">
-          <img src="https://img.icons8.com/?size=160&id=jF8g9G3v7KE6&format=png" class="rounded-circle mx-auto mb-3" alt="Player 3">
-          <h6 class="fw-bold">Arjun Verma</h6>
-          <small class="text-muted">Badminton Player</small>
-          <p class="mt-2">“I found practice partners nearby in minutes. Amazing experience!”</p>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm h-100 text-center p-3">
+            <img src="https://img.icons8.com/?size=160&id=jF8g9G3v7KE6&format=png" class="rounded-circle mx-auto mb-3"
+              alt="Player 3">
+            <h6 class="fw-bold">Arjun Verma</h6>
+            <small class="text-muted">Badminton Player</small>
+            <p class="mt-2">“I found practice partners nearby in minutes. Amazing experience!”</p>
+          </div>
         </div>
-      </div>
 
-     
-      <div class="col-md-6 col-lg-3">
-        <div class="card shadow-sm h-100 text-center p-3">
-          <img src="https://img.icons8.com/?size=160&id=68761&format=png" class="rounded-circle mx-auto mb-3" alt="Player 4">
-          <h6 class="fw-bold">Priya Nair</h6>
-          <small class="text-muted">Event Organizer</small>
-          <p class="mt-2">“The community feels lively. Players are active and responsive. Highly recommend HuddleUp.”</p>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card shadow-sm h-100 text-center p-3">
+            <img src="https://img.icons8.com/?size=160&id=68761&format=png" class="rounded-circle mx-auto mb-3"
+              alt="Player 4">
+            <h6 class="fw-bold">Priya Nair</h6>
+            <small class="text-muted">Event Organizer</small>
+            <p class="mt-2">“The community feels lively. Players are active and responsive. Highly recommend HuddleUp.”
+            </p>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!--OUR TEAM-->
   <div id="section2"
-    style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px;">
+    style="line-height: 60px;background-color: white;color: black;font-family: Trebuchet MS;text-align: center;font-size: 30px; ">
     Our Team</div>
-  <div class="container">
+  <div class="container hover-zoom">
     <div class="row mt-2">
       <div class="col-md-6 col-12">
         <div class="card mb-3">
@@ -657,45 +724,48 @@ $("#txtpwd").keyup(function () {
     </div>
   </div>
 
+  <!--FOOTER-->
+
   <!-- FOOTER -->
-<footer style="background-color: rgb(2, 48, 78);; color: white; padding: 40px 0;">
-  <div class="container">
-    <div class="row">
-      
-      <!-- About Section -->
-      <div class="col-md-4 mb-3">
-        <h5 class="fw-bold">HuddleUp</h5>
-        <p>
-          A community-driven platform to connect players and organizers. 
-          Game on, always — building stronger sports communities together.
-        </p>
-      </div>
+  <footer style="background-color: rgb(2, 48, 78);; color: white; padding: 40px 0;">
+    <div class="container">
+      <div class="row">
 
-      <!-- Quick Links -->
-      <div class="col-md-4 mb-3">
-        <h5 class="fw-bold">Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="#section1" class="text-white text-decoration-none">Services</a></li>
-          <li><a href="#section2" class="text-white text-decoration-none">About Us</a></li>
-          <li><a href="#reviews" class="text-white text-decoration-none">Reviews</a></li>
-          <li><a href="#section3" class="text-white text-decoration-none">Contact</a></li>
-        </ul>
-      </div>
+        <!-- About Section -->
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold">HuddleUp</h5>
+          <p>
+            A community-driven platform to connect players and organizers.
+            Game on, always — building stronger sports communities together.
+          </p>
+        </div>
 
-      <!-- Contact -->
-      <div class="col-md-4 mb-3">
-        <h5 class="fw-bold">Contact</h5>
-        <p>Email: <a href="mailto:huddleup@gmail.com" class="text-white text-decoration-none">huddleup@gmail.com</a></p>
-        <p>Location: GZSCCET,Bathinda, Punjab</p>
-      </div>
+        <!-- Quick Links -->
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#section1" class="text-white text-decoration-none">Services</a></li>
+            <li><a href="#section2" class="text-white text-decoration-none">About Us</a></li>
+            <li><a href="#reviews" class="text-white text-decoration-none">Reviews</a></li>
+            <li><a href="#section3" class="text-white text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
 
+        <!-- Contact -->
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold">Contact</h5>
+          <p>Email: <a href="mailto:huddleup@gmail.com" class="text-white text-decoration-none">huddleup@gmail.com</a>
+          </p>
+          <p>Location: GZSCCET,Bathinda, Punjab</p>
+        </div>
+
+      </div>
+      <hr style="border-color: rgba(255,255,255,0.2);">
+      <div class="text-center">
+        <p class="mb-0">© 2025 HuddleUp. All rights reserved.</p>
+      </div>
     </div>
-    <hr style="border-color: rgba(255,255,255,0.2);">
-    <div class="text-center">
-      <p class="mb-0">© 2025 HuddleUp. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <!--SIGNUP MODAL-->
   <!-- (Your existing signup modal code unchanged) -->
@@ -704,6 +774,19 @@ $("#txtpwd").keyup(function () {
   <!-- (Your existing login modal code unchanged) -->
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // SCROLL ANIMATION
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.fade-in, .slide-in-left').forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
