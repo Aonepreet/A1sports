@@ -465,6 +465,58 @@ $("#txtpwd").keyup(function () {
 
 
 
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+  <div class="container-fluid">
+    <!-- Logo + Brand -->
+    <a class="navbar-brand d-flex align-items-center flex-wrap" href="#">
+      <!-- Logo: smaller on xs screens -->
+      <img src="./images/logonew.webp" alt="Logo" class="d-inline-block" style="width: 45px; height: 45px;"
+           srcset="./images/logonew.webp 1x, ./images/logonew.webp 2x">
+      <!-- Full text on sm and larger -->
+      <span class="ms-2 fw-bold d-none d-sm-inline" style="font-size: 1.2rem;">Huddle Up - Game On, Always</span>
+      <!-- Short text on xs screens -->
+      <span class="ms-2 fw-bold d-inline d-sm-none" style="font-size: 1rem;">Huddle Up</span>
+    </a>
+
+    <!-- Hamburger Button -->
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu Items -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#section1">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section2">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section3">Reach Us</a>
+        </li>
+      </ul>
+
+      <!-- Buttons -->
+      <div class="d-flex ms-lg-3 mt-2 mt-lg-0">
+        <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
+        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Optional CSS for smaller screens -->
+<style>
+  @media (max-width: 576px) {
+    .navbar-brand img {
+      width: 40px !important;
+      height: 40px !important;
+    }
+  }
+</style>
 
 
 
